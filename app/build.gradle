@@ -20,6 +20,7 @@ android {
 }
 
 dependencies {
+    compile 'com.github.gianluca-nitti:java-expr-eval:v3.0'
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:22.+'

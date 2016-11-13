@@ -7,8 +7,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import com.github.gianlucanitti.javaexpreval.InteractiveExpressionContext;
+import com.github.gianlucanitti.javaexpreval.NullInputStream;
+
+import java.io.IOException;
+import java.io.StringReader;
 
 public class ExprEval extends AppCompatActivity implements View.OnClickListener{
+
+    private InteractiveExpressionContext ctx;
 
     private EditText in;
     private TextView out;
@@ -23,11 +30,16 @@ public class ExprEval extends AppCompatActivity implements View.OnClickListener{
         out.setMovementMethod(new ScrollingMovementMethod());
         evalBtn = (Button)findViewById(R.id.evalBtn);
         evalBtn.setOnClickListener(this);
+        TextViewWriter outWriter = new TextViewWriter(out);
+        ctx = new InteractiveExpressionContext(NullInputStream.getReader(), outWriter, outWriter, outWriter, true);
     }
 
     @Override
     public void onClick(View view){
-        out.append(in.getText());
+        ctx.setInputReader(new StringReader(in.getText().toString()));
+        try {
+            ctx.update();
+        }catch(IOException ex){}
     }
 
 }
