@@ -1,0 +1,12 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:tools="http://schemas.android.com/tools">
+
+    <item android:id="@+id/action_context"
+          android:title="Context"
+          tools:showAsAction="ifRoom"/>
+
+    <item android:id="@+id/action_settings"
+          android:title="Settings"
+          tools:showAsAction="never"/>
+
+</menu>
