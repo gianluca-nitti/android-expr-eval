@@ -41,6 +41,7 @@ public class ExprEval extends AppCompatActivity implements View.OnClickListener{
         TextViewWriter outWriter = new TextViewWriter(out);
         ctx = new InteractiveExpressionContext(NullInputStream.getReader(), outWriter, outWriter, outWriter, true);
         ctx.addObserver(ctxDialog);
+        ctxDialog.update(ctx, null);
     }
 
     @Override
