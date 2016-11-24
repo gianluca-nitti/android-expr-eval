@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import com.github.gianlucanitti.javaexpreval.ExpressionContext;
 import com.github.gianlucanitti.javaexpreval.InteractiveExpressionContext;
 import com.github.gianlucanitti.javaexpreval.NullInputStream;
 
@@ -27,12 +28,20 @@ public class ExprEval extends AppCompatActivity implements View.OnClickListener{
 
     private ContextDialogFragment ctxDialog;
 
+    public ExpressionContext getContext(){
+        return ctx;
+    }
+
+    public void writeOutput(String s){
+        out.append(s + System.getProperty("line.separator"));
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_expr_eval);
         setSupportActionBar((Toolbar)findViewById(R.id.my_toolbar));
-        in = (EditText)findViewById(R.id.inputText);
+        in = (EditText) findViewById(R.id.inputText);
         out = (TextView) findViewById(R.id.outputText);
         out.setMovementMethod(new ScrollingMovementMethod());
         evalBtn = (Button)findViewById(R.id.evalBtn);
@@ -46,8 +55,7 @@ public class ExprEval extends AppCompatActivity implements View.OnClickListener{
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.mainmenu, menu);
+        getMenuInflater().inflate(R.menu.mainmenu, menu);
         return true;
     }
 
@@ -71,6 +79,7 @@ public class ExprEval extends AppCompatActivity implements View.OnClickListener{
         try {
             ctx.update();
         }catch(IOException ex){}
+        in.getText().clear();
     }
 
 }

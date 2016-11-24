@@ -1,8 +1,6 @@
 package com.github.gianlucanitti.expreval;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.app.DialogFragment;
+import android.app.*;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
@@ -48,7 +46,7 @@ public class ContextDialogFragment extends DialogFragment implements Observer, D
     }
 
     private class ListItems{
-        private  ArrayList<ContextItem> items = new ArrayList<ContextItem>();
+        private  ArrayList<ContextItem> items = new ArrayList<>();
 
         private void update(ExpressionContext ctx){
             items.clear();
@@ -70,7 +68,17 @@ public class ContextDialogFragment extends DialogFragment implements Observer, D
         }
     }
 
+    private FragmentManager fm;
+    private EditVariableDialogFragment editVariable;
+
     private ListItems items = new ListItems();
+
+    private void showEditVariable(String varName){
+        Bundle args = new Bundle();
+        args.putString("varName", varName);
+        editVariable.setArguments(args);
+        editVariable.show(fm, "edit_variable");
+    }
 
     @Override
     public void update(Observable observable, Object data) {
@@ -80,6 +88,8 @@ public class ContextDialogFragment extends DialogFragment implements Observer, D
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState){
         setRetainInstance(true);
+        editVariable = new EditVariableDialogFragment();
+        fm = getFragmentManager();
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setItems(items.getStrings(), this);
         builder.setPositiveButton("New...", this);
@@ -88,11 +98,22 @@ public class ContextDialogFragment extends DialogFragment implements Observer, D
 
     @Override
     public void onClick(DialogInterface dialog, int which) {
-        if(which == DialogInterface.BUTTON_POSITIVE){
+            if (which == DialogInterface.BUTTON_POSITIVE) {
+                AlertDialog.Builder typeSelector = new AlertDialog.Builder(getActivity());
+                typeSelector.setItems(new String[]{"Add variable", "Add function"}, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        if(i == 0) {
+                            showEditVariable("");
+                        }else if (i == 1){
 
-        }else{
-            ContextItem ci = items.getItem(which);
-            Log.d("CONTEXTDIALOGFRAGMENT", "selected " + (ci instanceof VariableContextItem ? "variable" : "function") + " " + ci.toString());
-        }
+                        }
+                    }
+                });
+                typeSelector.create().show();
+            } else {
+                ContextItem ci = items.getItem(which);
+                Log.d("CONTEXTDIALOGFRAGMENT", "selected " + (ci instanceof VariableContextItem ? "variable" : "function") + " " + ci.toString());
+            }
     }
 }
