@@ -70,6 +70,7 @@ public class ContextDialogFragment extends DialogFragment implements Observer, D
 
     private FragmentManager fm;
     private EditVariableDialogFragment editVariable;
+    private EditFunctionDialogFragment editFunction;
 
     private ListItems items = new ListItems();
 
@@ -78,6 +79,14 @@ public class ContextDialogFragment extends DialogFragment implements Observer, D
         args.putString("varName", varName);
         editVariable.setArguments(args);
         editVariable.show(fm, "edit_variable");
+    }
+
+    private void showEditFunction(String funName, int argCount){
+        Bundle args = new Bundle();
+        args.putString("funName", funName);
+        args.putInt("argCount", argCount);
+        editFunction.setArguments(args);
+        editFunction.show(fm, "edit_function");
     }
 
     @Override
@@ -89,6 +98,7 @@ public class ContextDialogFragment extends DialogFragment implements Observer, D
     public Dialog onCreateDialog(Bundle savedInstanceState){
         setRetainInstance(true);
         editVariable = new EditVariableDialogFragment();
+        editFunction = new EditFunctionDialogFragment();
         fm = getFragmentManager();
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setItems(items.getStrings(), this);
@@ -106,14 +116,14 @@ public class ContextDialogFragment extends DialogFragment implements Observer, D
                         if(i == 0) {
                             showEditVariable("");
                         }else if (i == 1){
-
+                            showEditFunction("", 0);
                         }
                     }
                 });
                 typeSelector.create().show();
             } else {
                 ContextItem ci = items.getItem(which);
-                Log.d("CONTEXTDIALOGFRAGMENT", "selected " + (ci instanceof VariableContextItem ? "variable" : "function") + " " + ci.toString());
+                //TODO: delete item
             }
     }
 }

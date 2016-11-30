@@ -25,24 +25,25 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
         <EditText
+                android:id="@+id/inputText"
+                android:hint="Type an expression"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.7"
-                android:id="@+id/inputText"/>
+                android:layout_weight="0.7"/>
         <Button
+                android:id="@+id/evalBtn"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.3"
-                android:text="Evaluate"
-                android:id="@+id/evalBtn"/>
+                android:text="Evaluate"/>
     </LinearLayout>
 
     <TextView
+            android:id="@+id/outputText"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scrollbars="vertical"
             android:gravity="bottom"
-            android:text=""
-            android:id="@+id/outputText"/>
+            android:text=""/>
 
 </LinearLayout>

@@ -5,6 +5,10 @@
           android:title="Context"
           tools:showAsAction="ifRoom"/>
 
+    <item android:id="@+id/action_clear"
+          android:title="Clear context"
+          tools:showAsAction="never"/>
+
     <item android:id="@+id/action_settings"
           android:title="Settings"
           tools:showAsAction="never"/>
