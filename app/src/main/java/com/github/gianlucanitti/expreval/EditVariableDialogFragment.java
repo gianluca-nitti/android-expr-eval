@@ -49,7 +49,7 @@ public class EditVariableDialogFragment extends DialogFragment implements Dialog
         if(which == DialogInterface.BUTTON_POSITIVE){
             try {
                 ctx.setVariable(varName = nameText.getText().toString(), readonlyCheckbox.isChecked(), Expression.parse(valueText.getText().toString()));
-                writeOutput(varName + " is now " + ctx.getVariable(varName));
+                writeOutput(varName + " is now " + ctx.getVariable(varName) + ".");
             }catch(ExpressionException ex){
                 writeOutput(ex.getMessage());
                 Toast.makeText(getActivity(), ex.getMessage(), Toast.LENGTH_LONG).show();

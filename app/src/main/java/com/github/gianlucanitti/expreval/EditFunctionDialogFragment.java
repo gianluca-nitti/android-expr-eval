@@ -63,12 +63,14 @@ public class EditFunctionDialogFragment extends DialogFragment implements Dialog
     @Override
     public void onClick(DialogInterface dialogInterface, int i) {
         //TODO: check if it's a valid name
-        try {
-            ctx.setFunction(nameText.getText().toString(), Expression.parse(exprText.getText().toString()), readonlyCheckbox.isChecked(), argNames.toArray(new String[argNames.size()]));
-            writeOutput(ctx.getFunction(nameText.getText().toString(), argNames.size()).toString() + "is now defined as " + exprText.getText().toString());
-        }catch(ExpressionException ex){
-            writeOutput(ex.getMessage());
-            Toast.makeText(getActivity(), ex.getMessage(), Toast.LENGTH_LONG).show();
+        if(i == DialogInterface.BUTTON_POSITIVE) {
+            try {
+                ctx.setFunction(nameText.getText().toString(), Expression.parse(exprText.getText().toString()), readonlyCheckbox.isChecked(), argNames.toArray(new String[argNames.size()]));
+                writeOutput(ctx.getFunction(nameText.getText().toString(), argNames.size()).toString() + " is now defined as " + exprText.getText().toString() + ".");
+            } catch (ExpressionException ex) {
+                writeOutput(ex.getMessage());
+                Toast.makeText(getActivity(), ex.getMessage(), Toast.LENGTH_LONG).show();
+            }
         }
     }
 

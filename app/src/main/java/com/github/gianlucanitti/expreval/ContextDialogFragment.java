@@ -4,9 +4,8 @@ import android.app.*;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
-import com.github.gianlucanitti.javaexpreval.ExpressionContext;
-import com.github.gianlucanitti.javaexpreval.Function;
-import com.github.gianlucanitti.javaexpreval.VariableExpression;
+import android.widget.Toast;
+import com.github.gianlucanitti.javaexpreval.*;
 
 import java.util.*;
 
@@ -28,7 +27,7 @@ public class ContextDialogFragment extends DialogFragment implements Observer, D
 
         @Override
         public String toString(){
-            return name + "=" + data.toString(); //TODO
+            return (data.isReadOnly() ? "readonly " : "") + name + "=" + data.getValue();
         }
     }
 
@@ -41,14 +40,17 @@ public class ContextDialogFragment extends DialogFragment implements Observer, D
 
         @Override
         public String toString(){
-            return data.toString(); //TODO
+            return (data.isReadOnly() ? "readonly " : "") + data.getName() + "(" + data.getArgCount() + " arguments)";
         }
     }
 
     private class ListItems{
+
         private  ArrayList<ContextItem> items = new ArrayList<>();
+        private ExpressionContext ctx;
 
         private void update(ExpressionContext ctx){
+            this.ctx = ctx;
             items.clear();
             for(Map.Entry<String, ExpressionContext.VariableValue> v: ctx.getVariables().entrySet())
                 items.add(new VariableContextItem(v.getKey(), v.getValue()));
@@ -65,6 +67,18 @@ public class ContextDialogFragment extends DialogFragment implements Observer, D
 
         private ContextItem getItem(int i){
             return items.get(i);
+        }
+
+        private ContextItem removeItem(int i) throws ReadonlyException{
+            ContextItem item = items.get(i);
+            if (item instanceof VariableContextItem) {
+                ctx.delVariable(((VariableContextItem) item).name);
+            } else {
+                Function f = ((FunctionContextItem) item).data;
+                ctx.delFunction(f.getName(), f.getArgCount());
+            }
+            update(ctx);
+            return item;
         }
     }
 
@@ -107,23 +121,35 @@ public class ContextDialogFragment extends DialogFragment implements Observer, D
     }
 
     @Override
-    public void onClick(DialogInterface dialog, int which) {
-            if (which == DialogInterface.BUTTON_POSITIVE) {
-                AlertDialog.Builder typeSelector = new AlertDialog.Builder(getActivity());
-                typeSelector.setItems(new String[]{"Add variable", "Add function"}, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        if(i == 0) {
-                            showEditVariable("");
-                        }else if (i == 1){
-                            showEditFunction("", 0);
-                        }
+    public void onClick(DialogInterface dialog, final int which) {
+        final ExprEval activity = (ExprEval)getActivity();
+        AlertDialog.Builder innerDialog = new AlertDialog.Builder(activity);
+        if (which == DialogInterface.BUTTON_POSITIVE) {
+            innerDialog.setItems(new String[]{"Add variable", "Add function"}, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    if(i == 0) {
+                        showEditVariable("");
+                    }else if (i == 1){
+                        showEditFunction("", 0);
                     }
-                });
-                typeSelector.create().show();
-            } else {
-                ContextItem ci = items.getItem(which);
-                //TODO: delete item
-            }
+                }
+            });
+        } else {
+            innerDialog.setMessage("Do you want to delete \"" + items.getItem(which).toString() + "\"?");
+            innerDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener(){
+                @Override
+                public void onClick(DialogInterface dialog_inner, int which_inner) {
+                    try{
+                        activity.writeOutput(items.removeItem(which).toString() + " has been deleted.");
+                    }catch(ExpressionException ex){
+                        Toast.makeText(activity, ex.getMessage(), Toast.LENGTH_LONG).show();
+                        activity.writeOutput(ex.getMessage());
+                    }
+                }
+            });
+            innerDialog.setNegativeButton("No", null);
+        }
+        innerDialog.create().show();
     }
 }
