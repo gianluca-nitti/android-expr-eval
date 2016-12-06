@@ -43,6 +43,13 @@ public class EditFunctionDialogFragment extends DialogFragment implements Dialog
         nameText.setText(funName);
         final ArrayAdapter<String> argsArrayAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, argNames);
         argsList.setAdapter(argsArrayAdapter);
+        argsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                argNames.remove(i);
+                argsArrayAdapter.notifyDataSetChanged();
+            }
+        });
         rootLayout.findViewById(R.id.add_argument).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

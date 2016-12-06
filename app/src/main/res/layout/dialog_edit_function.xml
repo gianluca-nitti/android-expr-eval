@@ -35,19 +35,19 @@
 
     <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
         <TextView
                 android:layout_height="wrap_content"
-                android:text="Arguments"/>
+                android:text="Arguments (tap to remove)"/>
     </TableRow>
 
     <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
         <ListView
                 android:id="@+id/argsList"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
         />
     </TableRow>
 
