@@ -11,7 +11,7 @@ import com.github.gianlucanitti.javaexpreval.*;
 
 import java.util.ArrayList;
 
-public class EditFunctionDialogFragment extends DialogFragment implements DialogInterface.OnClickListener{
+public class EditFunctionDialogFragment extends DialogFragment implements DialogInterface.OnClickListener {
 
     private ExpressionContext ctx;
     private String funName;
@@ -23,12 +23,12 @@ public class EditFunctionDialogFragment extends DialogFragment implements Dialog
     private ListView argsList;
     private CheckBox readonlyCheckbox;
 
-    private void writeOutput(String s){
+    private void writeOutput(String s) {
         ((ExprEval) getActivity()).writeOutput(s);
     }
 
     @Override
-    public Dialog onCreateDialog(Bundle savedInstanceState){
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
         setRetainInstance(true);
         funName = getArguments().getString("funName"); //TODO: remove
         ctx = ((ExprEval) getActivity()).getContext();
@@ -53,11 +53,12 @@ public class EditFunctionDialogFragment extends DialogFragment implements Dialog
         rootLayout.findViewById(R.id.add_argument).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(newArgText.getText().length() != 0) {
-                    //TODO: check if it's a valid name
+                if (NamedSymbolExpression.isValidSymbolName(newArgText.getText().toString())) {
                     argNames.add(newArgText.getText().toString());
                     argsArrayAdapter.notifyDataSetChanged();
                     newArgText.getText().clear();
+                } else {
+                    newArgText.setError("Invalid argument name");
                 }
             }
         });
@@ -69,8 +70,7 @@ public class EditFunctionDialogFragment extends DialogFragment implements Dialog
 
     @Override
     public void onClick(DialogInterface dialogInterface, int i) {
-        //TODO: check if it's a valid name
-        if(i == DialogInterface.BUTTON_POSITIVE) {
+        if (i == DialogInterface.BUTTON_POSITIVE) {
             try {
                 ctx.setFunction(nameText.getText().toString(), Expression.parse(exprText.getText().toString()), readonlyCheckbox.isChecked(), argNames.toArray(new String[argNames.size()]));
                 writeOutput(ctx.getFunction(nameText.getText().toString(), argNames.size()).toString() + " is now defined as " + exprText.getText().toString() + ".");

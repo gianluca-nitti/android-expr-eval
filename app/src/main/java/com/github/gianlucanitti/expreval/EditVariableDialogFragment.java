@@ -45,7 +45,6 @@ public class EditVariableDialogFragment extends DialogFragment implements Dialog
 
     @Override
     public void onClick(DialogInterface dialogInterface, int which) {
-        //TODO: check if it's a valid name -> setError on edittext
         if(which == DialogInterface.BUTTON_POSITIVE){
             try {
                 ctx.setVariable(varName = nameText.getText().toString(), readonlyCheckbox.isChecked(), Expression.parse(valueText.getText().toString()));
