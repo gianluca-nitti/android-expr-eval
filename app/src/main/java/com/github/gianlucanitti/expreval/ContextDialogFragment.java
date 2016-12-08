@@ -88,21 +88,6 @@ public class ContextDialogFragment extends DialogFragment implements Observer, D
 
     private ListItems items = new ListItems();
 
-    private void showEditVariable(String varName){
-        Bundle args = new Bundle();
-        args.putString("varName", varName);
-        editVariable.setArguments(args);
-        editVariable.show(fm, "edit_variable");
-    }
-
-    private void showEditFunction(String funName, int argCount){
-        Bundle args = new Bundle();
-        args.putString("funName", funName);
-        args.putInt("argCount", argCount);
-        editFunction.setArguments(args);
-        editFunction.show(fm, "edit_function");
-    }
-
     @Override
     public void update(Observable observable, Object data) {
         items.update((ExpressionContext)observable);
@@ -129,9 +114,9 @@ public class ContextDialogFragment extends DialogFragment implements Observer, D
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
                     if(i == 0) {
-                        showEditVariable("");
+                        editVariable.show(fm, "edit_variable");
                     }else if (i == 1){
-                        showEditFunction("", 0);
+                        editFunction.show(fm, "edit_function");
                     }
                 }
             });

@@ -14,7 +14,6 @@ import java.util.ArrayList;
 public class EditFunctionDialogFragment extends DialogFragment implements DialogInterface.OnClickListener {
 
     private ExpressionContext ctx;
-    private String funName;
     private ArrayList<String> argNames;
 
     private EditText nameText;
@@ -30,7 +29,6 @@ public class EditFunctionDialogFragment extends DialogFragment implements Dialog
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         setRetainInstance(true);
-        funName = getArguments().getString("funName"); //TODO: remove
         ctx = ((ExprEval) getActivity()).getContext();
         argNames = new ArrayList<>();
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -40,7 +38,6 @@ public class EditFunctionDialogFragment extends DialogFragment implements Dialog
         newArgText = (EditText) rootLayout.findViewById(R.id.newArgText);
         argsList = (ListView) rootLayout.findViewById(R.id.argsList);
         readonlyCheckbox = (CheckBox) rootLayout.findViewById(R.id.readonlyCheckbox);
-        nameText.setText(funName);
         final ArrayAdapter<String> argsArrayAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, argNames);
         argsList.setAdapter(argsArrayAdapter);
         argsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {

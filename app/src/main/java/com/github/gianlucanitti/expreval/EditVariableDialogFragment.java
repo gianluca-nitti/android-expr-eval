@@ -16,7 +16,6 @@ import com.github.gianlucanitti.javaexpreval.ExpressionException;
 public class EditVariableDialogFragment extends DialogFragment implements DialogInterface.OnClickListener{
 
     private ExpressionContext ctx;
-    private String varName;
 
     private EditText nameText;
     private EditText valueText;
@@ -29,14 +28,12 @@ public class EditVariableDialogFragment extends DialogFragment implements Dialog
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState){
         setRetainInstance(true);
-        varName = getArguments().getString("varName");
         ctx = ((ExprEval) getActivity()).getContext();
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         View rootLayout = getActivity().getLayoutInflater().inflate(R.layout.dialog_edit_variable, null);
         nameText = (EditText) rootLayout.findViewById(R.id.nameText);
         valueText = (EditText) rootLayout.findViewById(R.id.valueText);
         readonlyCheckbox = (CheckBox) rootLayout.findViewById(R.id.readonlyCheckbox);
-        nameText.setText(varName);
         builder.setView(rootLayout);
         builder.setPositiveButton("OK", this);
         builder.setNegativeButton("Cancel", this);
@@ -46,8 +43,9 @@ public class EditVariableDialogFragment extends DialogFragment implements Dialog
     @Override
     public void onClick(DialogInterface dialogInterface, int which) {
         if(which == DialogInterface.BUTTON_POSITIVE){
+            String varName = nameText.getText().toString();
             try {
-                ctx.setVariable(varName = nameText.getText().toString(), readonlyCheckbox.isChecked(), Expression.parse(valueText.getText().toString()));
+                ctx.setVariable(varName , readonlyCheckbox.isChecked(), Expression.parse(valueText.getText().toString()));
                 writeOutput(varName + " is now " + ctx.getVariable(varName) + ".");
             }catch(ExpressionException ex){
                 writeOutput(ex.getMessage());
