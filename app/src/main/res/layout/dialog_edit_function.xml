@@ -57,6 +57,8 @@
         <EditText
                 android:id="@+id/newArgText"
                 android:hint="Type argument name"
+                android:inputType="text"
+                android:maxLines="1"
                 android:layout_width="0dp"
                 android:layout_weight="6"
                 android:layout_height="wrap_content"/>

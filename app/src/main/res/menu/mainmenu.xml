@@ -5,12 +5,16 @@
           android:title="Context"
           tools:showAsAction="ifRoom"/>
 
-    <item android:id="@+id/action_clear"
+    <item android:id="@+id/action_clearctx"
           android:title="Clear context"
           tools:showAsAction="never"/>
 
-    <item android:id="@+id/action_settings"
-          android:title="Settings"
+    <item android:id="@+id/action_clearout"
+          android:title="Clear output"
+          tools:showAsAction="never"/>
+
+    <item android:id="@+id/action_help"
+          android:title="Help"
           tools:showAsAction="never"/>
 
 </menu>

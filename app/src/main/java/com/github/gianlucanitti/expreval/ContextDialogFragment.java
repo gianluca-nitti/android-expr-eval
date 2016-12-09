@@ -3,7 +3,6 @@ package com.github.gianlucanitti.expreval;
 import android.app.*;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Toast;
 import com.github.gianlucanitti.javaexpreval.*;
 

@@ -1,11 +1,12 @@
 package com.github.gianlucanitti.expreval;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.method.ScrollingMovementMethod;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -17,6 +18,7 @@ import com.github.gianlucanitti.javaexpreval.NullInputStream;
 
 import java.io.IOException;
 import java.io.StringReader;
+import java.io.StringWriter;
 
 public class ExprEval extends AppCompatActivity implements View.OnClickListener{
 
@@ -25,6 +27,8 @@ public class ExprEval extends AppCompatActivity implements View.OnClickListener{
     private EditText in;
     private TextView out;
     private Button evalBtn;
+
+    private TextViewWriter outWriter;
 
     private ContextDialogFragment ctxDialog;
 
@@ -47,7 +51,7 @@ public class ExprEval extends AppCompatActivity implements View.OnClickListener{
         evalBtn = (Button)findViewById(R.id.evalBtn);
         evalBtn.setOnClickListener(this);
         ctxDialog = new ContextDialogFragment();
-        TextViewWriter outWriter = new TextViewWriter(out);
+        outWriter = new TextViewWriter(out);
         ctx = new InteractiveExpressionContext(NullInputStream.getReader(), outWriter, outWriter, outWriter, true);
         ctx.addObserver(ctxDialog);
         ctxDialog.update(ctx, null);
@@ -65,8 +69,28 @@ public class ExprEval extends AppCompatActivity implements View.OnClickListener{
             case R.id.action_context:
                 ctxDialog.show(getFragmentManager(), "context_dialog");
                 return true;
-            case R.id.action_settings:
-
+            case R.id.action_clearctx:
+                AlertDialog.Builder prompt = new AlertDialog.Builder(this);
+                prompt.setMessage("Do you want to delete all non-readonly functions and variables?");
+                prompt.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        ctx.clear();
+                        try {
+                            outWriter.write("All non-readonly variables and functions have been cleared.");
+                            outWriter.flush();
+                        }catch (IOException ex){}
+                    }
+                });
+                prompt.setNegativeButton("No", null);
+                prompt.show();
+                return true;
+            case R.id.action_clearout:
+                out.setText("");
+                return true;
+            case R.id.action_help:
+                new AlertDialog.Builder(this).setMessage("In the input box you can type expressions, variable or function assignments (like \"a=5\" or \"log(x,b)=log(x)/log(b)\") and commands. " +
+                    "The available commands are \"help\", \"context\", \"clear\" and \"exit\". Type \"help\" in the input box for more detailed instructions. ").show();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -76,10 +100,13 @@ public class ExprEval extends AppCompatActivity implements View.OnClickListener{
     @Override
     public void onClick(View view){
         ctx.setInputReader(new StringReader(in.getText().toString()));
+        InteractiveExpressionContext.Status status = null;
         try {
-            ctx.update();
+            status = ctx.update();
         }catch(IOException ex){}
         in.getText().clear();
+        if(status == InteractiveExpressionContext.Status.EXIT)
+            finish();
     }
 
 }
