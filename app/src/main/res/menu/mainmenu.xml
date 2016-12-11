@@ -13,6 +13,18 @@
           android:title="Clear output"
           tools:showAsAction="never"/>
 
+    <item android:id="@+id/action_verbose"
+          android:title="Show steps"
+          android:checkable="true"
+          android:checked="true"
+          tools:showAsAction="never"/>
+
+    <item android:id="@+id/action_input"
+          android:title="Echo input"
+          android:checkable="true"
+          android:checked="true"
+          tools:showAsAction="never"/>
+
     <item android:id="@+id/action_help"
           android:title="Help"
           tools:showAsAction="never"/>

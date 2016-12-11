@@ -1,6 +1,8 @@
 package com.github.gianlucanitti.expreval;
 
 import android.support.annotation.NonNull;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.widget.TextView;
 
 import java.io.IOException;
@@ -10,9 +12,11 @@ public class TextViewWriter extends Writer {
 
     private StringBuilder buffer;
     private TextView v;
+    private int color;
 
-    public TextViewWriter(TextView target){
+    public TextViewWriter(TextView target, int c){
         v = target;
+        color = c;
         buffer = new StringBuilder();
     }
 
@@ -23,7 +27,9 @@ public class TextViewWriter extends Writer {
 
     @Override
     public void flush() throws IOException {
-        v.append(buffer.toString());
+        SpannableString s = new SpannableString(buffer.toString());
+        s.setSpan(new ForegroundColorSpan(color), 0, s.length(), 0);
+        v.append(s);
         buffer = new StringBuilder();
     }
 
