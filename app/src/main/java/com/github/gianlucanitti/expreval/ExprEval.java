@@ -24,19 +24,13 @@ import java.io.StringReader;
 
 public class ExprEval extends AppCompatActivity implements View.OnClickListener{
 
-    private InteractiveExpressionContext ctx;
+    private TextViewExpressionContext ctx;
 
     private EditText in;
     private TextView out;
     private Button evalBtn;
 
-    private TextViewWriter inEchoWriter;
-    private TextViewWriter outWriter;
-    private TextViewWriter verboseWriter;
-    private TextViewWriter errorWriter;
-
     private ContextDialogFragment ctxDialog;
-    private boolean echoInput = true;
 
     public ExpressionContext getContext(){
         return ctx;
@@ -57,11 +51,7 @@ public class ExprEval extends AppCompatActivity implements View.OnClickListener{
         evalBtn = (Button)findViewById(R.id.evalBtn);
         evalBtn.setOnClickListener(this);
         ctxDialog = new ContextDialogFragment();
-        inEchoWriter = new TextViewWriter(out, Color.YELLOW);
-        outWriter = new TextViewWriter(out, Color.GREEN);
-        verboseWriter = new TextViewWriter(out, out.getTextColors().getDefaultColor());
-        errorWriter = new TextViewWriter(out, Color.RED);
-        ctx = new InteractiveExpressionContext(NullInputStream.getReader(), outWriter, verboseWriter, errorWriter, true);
+        ctx = new TextViewExpressionContext(out);
         ctx.addObserver(ctxDialog);
         ctxDialog.update(ctx, null);
     }
@@ -85,10 +75,7 @@ public class ExprEval extends AppCompatActivity implements View.OnClickListener{
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         ctx.clear();
-                        try {
-                            outWriter.write("All non-readonly variables and functions have been cleared.");
-                            outWriter.flush();
-                        }catch (IOException ex){}
+                        ctx.writeOutput("All non-readonly variables and functions have been cleared.");
                     }
                 });
                 prompt.setNegativeButton("No", null);
@@ -99,14 +86,11 @@ public class ExprEval extends AppCompatActivity implements View.OnClickListener{
                 return true;
             case R.id.action_verbose:
                 item.setChecked(!item.isChecked());
-                if(item.isChecked())
-                    ctx.setVerboseOutputWriter(verboseWriter, true);
-                else
-                    ctx.setVerboseOutputWriter(NullOutputStream.getWriter(), true);
+                ctx.setVerbose(item.isChecked());
                 return true;
             case R.id.action_input:
                 item.setChecked(!item.isChecked());
-                echoInput = item.isChecked();
+                ctx.setEchoInput(item.isChecked());
                 return true;
             case R.id.action_help:
                 new AlertDialog.Builder(this).setMessage(Html.fromHtml("In the input box you can type expressions, variable or function assignments (like \"a=5\" or \"log(x,b)=log(x)/log(b)\") and commands. " +
@@ -120,18 +104,9 @@ public class ExprEval extends AppCompatActivity implements View.OnClickListener{
 
     @Override
     public void onClick(View view){
-        ctx.setInputReader(new StringReader(in.getText().toString()));
-        InteractiveExpressionContext.Status status = null;
-        try {
-            if(echoInput) {
-                inEchoWriter.write("> " + in.getText().toString() + System.getProperty("line.separator"));
-                inEchoWriter.flush();
-            }
-            status = ctx.update();
-        }catch(IOException ex){}
-        in.getText().clear();
-        if(status == InteractiveExpressionContext.Status.EXIT)
+        if(ctx.update(in.getText().toString()))
             finish();
+        in.getText().clear();
     }
 
 }

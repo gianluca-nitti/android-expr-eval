@@ -8,11 +8,23 @@
             android:label="@string/app_name"
             android:supportsRtl="true"
             android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".ExprEval"
-                  android:configChanges="orientation|screenSize">
+        <activity
+                android:name=".ExprEval"
+                android:configChanges="orientation|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".ExprEvalDialog" android:label="Eval expression" android:theme="@style/Theme.AppCompat.Dialog">
+            <intent-filter>
+                <action android:name="com.github.gianlucanitti.expreval.ACTION_EVAL"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.PROCESS_TEXT"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:mimeType="text/plain"/>
             </intent-filter>
         </activity>
     </application>
