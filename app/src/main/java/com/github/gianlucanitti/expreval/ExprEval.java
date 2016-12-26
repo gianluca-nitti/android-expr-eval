@@ -2,7 +2,6 @@ package com.github.gianlucanitti.expreval;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -15,12 +14,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import com.github.gianlucanitti.javaexpreval.ExpressionContext;
-import com.github.gianlucanitti.javaexpreval.InteractiveExpressionContext;
-import com.github.gianlucanitti.javaexpreval.NullInputStream;
-import com.github.gianlucanitti.javaexpreval.NullOutputStream;
-
-import java.io.IOException;
-import java.io.StringReader;
 
 public class ExprEval extends AppCompatActivity implements View.OnClickListener{
 
