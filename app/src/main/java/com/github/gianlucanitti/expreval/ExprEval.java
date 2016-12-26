@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import com.github.gianlucanitti.javaexpreval.ExpressionContext;
+import com.github.gianlucanitti.javaexpreval.InteractiveExpressionContext;
 
 public class ExprEval extends AppCompatActivity implements View.OnClickListener{
 
@@ -97,7 +98,7 @@ public class ExprEval extends AppCompatActivity implements View.OnClickListener{
 
     @Override
     public void onClick(View view){
-        if(ctx.update(in.getText().toString()))
+        if(ctx.update(in.getText().toString()) == TextViewExpressionContext.Status.EXIT)
             finish();
         in.getText().clear();
     }

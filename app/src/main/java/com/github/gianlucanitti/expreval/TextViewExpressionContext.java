@@ -42,7 +42,7 @@ public class TextViewExpressionContext extends InteractiveExpressionContext {
         echoInput = b;
     }
 
-    public boolean update(String s){
+    public Status update(String s){
         setInputReader(new StringReader(s));
         InteractiveExpressionContext.Status status = null;
         try {
@@ -50,9 +50,9 @@ public class TextViewExpressionContext extends InteractiveExpressionContext {
                 inEchoWriter.write("> " + s + System.getProperty("line.separator"));
                 inEchoWriter.flush();
             }
-            return update() == Status.EXIT;
+            return update();
         }catch(IOException ex){
-            return false;
+            return Status.ERROR;
         }
     }
 

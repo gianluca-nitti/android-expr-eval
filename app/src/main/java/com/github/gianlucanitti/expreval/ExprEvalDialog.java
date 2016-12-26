@@ -5,38 +5,46 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 import com.github.gianlucanitti.javaexpreval.UndefinedException;
 
 public class ExprEvalDialog extends AppCompatActivity implements View.OnClickListener{
 
-    private double result = Double.NaN;
+    private boolean actionIsProcessText;
+    private String result;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_expr_eval_dialog);
-        findViewById(R.id.evalDialogOK).setOnClickListener(this);
+        View okButton = findViewById(R.id.evalDialogOK);
+        okButton.setOnClickListener(this);
         findViewById(R.id.evalDialogCancel).setOnClickListener(this);
-        //String expr = getIntent().getCharSequenceExtra(Intent.EXTRA_PROCESS_TEXT);
-        String expr = getIntent().getCharSequenceExtra("expression").toString();
+        actionIsProcessText = getIntent().getAction().equals(Intent.ACTION_PROCESS_TEXT);
+        String expr = getIntent().getStringExtra(actionIsProcessText ? Intent.EXTRA_PROCESS_TEXT : "expression");
         ((TextView)findViewById(R.id.evalDialogExpr)).append(expr);
         TextView evalDialogLog = (TextView)findViewById(R.id.evalDialogLog);
         evalDialogLog.setMovementMethod(new ScrollingMovementMethod());
         evalDialogLog.append(System.getProperty("line.separator"));
         TextViewExpressionContext ctx = new TextViewExpressionContext(evalDialogLog);
-        ctx.update(expr); //TODO: set failOnError
-        try {
-            result = ctx.getVariable("ans");
-        }catch(UndefinedException e){}
-        ((TextView)findViewById(R.id.evalDialogResult)).append(Double.toString(result));
+        ctx.setStopOnError(true);
+        boolean failed = ctx.update(expr) == TextViewExpressionContext.Status.ERROR;
+        okButton.setEnabled(!failed);
+        if(failed)
+            result = " evaluation failed.";
+        else
+            try {
+                result = Double.toString(ctx.getVariable("ans"));
+            }catch(UndefinedException e){
+                result = " evaluation failed.";
+            }
+        ((TextView)findViewById(R.id.evalDialogResult)).append(result);
     }
 
     @Override
     public void onClick(View view) {
         if(view.getId() == R.id.evalDialogOK)
-            setResult(RESULT_OK, new Intent().putExtra("result", result));
+            setResult(RESULT_OK, new Intent().putExtra(actionIsProcessText ? Intent.EXTRA_PROCESS_TEXT : "result", result));
         else
             setResult(RESULT_CANCELED);
         finish();
