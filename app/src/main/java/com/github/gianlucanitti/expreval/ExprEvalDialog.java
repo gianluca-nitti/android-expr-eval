@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import com.github.gianlucanitti.javaexpreval.UndefinedException;
 
@@ -18,10 +19,16 @@ public class ExprEvalDialog extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_expr_eval_dialog);
         View okButton = findViewById(R.id.evalDialogOK);
+        View cancelButton = findViewById(R.id.evalDialogCancel);
         okButton.setOnClickListener(this);
-        findViewById(R.id.evalDialogCancel).setOnClickListener(this);
+        cancelButton.setOnClickListener(this);
         actionIsProcessText = getIntent().getAction().equals(Intent.ACTION_PROCESS_TEXT);
         String expr = getIntent().getStringExtra(actionIsProcessText ? Intent.EXTRA_PROCESS_TEXT : "expression");
+        if(actionIsProcessText && getIntent().getBooleanExtra(Intent.EXTRA_PROCESS_TEXT_READONLY, false)){
+            okButton.setVisibility(View.INVISIBLE);
+            ((Button)cancelButton).setText("Close");
+            findViewById(R.id.evalDialogOkToReplace).setVisibility(View.GONE);
+        }
         ((TextView)findViewById(R.id.evalDialogExpr)).append(expr);
         TextView evalDialogLog = (TextView)findViewById(R.id.evalDialogLog);
         evalDialogLog.setMovementMethod(new ScrollingMovementMethod());

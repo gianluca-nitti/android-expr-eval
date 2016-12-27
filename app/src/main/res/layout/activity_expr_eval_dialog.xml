@@ -38,6 +38,7 @@
             android:text="Result: "/>
 
     <TextView
+            android:id="@+id/evalDialogOkToReplace"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0"
