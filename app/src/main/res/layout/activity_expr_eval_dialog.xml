@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0"
-            android:text="Expression: "/>
+            android:text="@string/expressionColon"/>
 
     <TextView
             android:id="@+id/evalDialogLog"
@@ -28,21 +28,21 @@
             android:layout_weight="1"
             android:scrollbars="vertical"
             android:fadeScrollbars="false"
-            android:text="Evaluation log:"/>
+            android:text="@string/evalLog"/>
 
     <TextView
             android:id="@+id/evalDialogResult"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0"
-            android:text="Result: "/>
+            android:text="@string/result"/>
 
     <TextView
             android:id="@+id/evalDialogOkToReplace"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0"
-            android:text="Tap OK to replace the expression with the result."/>
+            android:text="@string/okToReplace"/>
 
     <LinearLayout style="?android:attr/buttonBarStyle"
                   android:layout_width="match_parent"
@@ -50,18 +50,19 @@
                   android:orientation="horizontal">
 
         <Button style="?android:attr/buttonBarButtonStyle"
-                android:id="@+id/evalDialogOK"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="OK" />
-
-        <Button style="?android:attr/buttonBarButtonStyle"
                 android:id="@+id/evalDialogCancel"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Cancel" />
+                android:text="@android:string/cancel" />
+
+        <Button style="?android:attr/buttonBarButtonStyle"
+                android:id="@+id/evalDialogOK"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@android:string/ok" />
+
     </LinearLayout>
 
 </LinearLayout>

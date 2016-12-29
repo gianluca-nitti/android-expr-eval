@@ -10,7 +10,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="2"
                 android:layout_height="wrap_content"
-                android:text="Name"/>
+                android:text="@string/name"/>
         <EditText
                 android:id="@+id/nameText"
                 android:layout_width="0dp"
@@ -25,7 +25,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="2"
                 android:layout_height="wrap_content"
-                android:text="Value"/>
+                android:text="@string/value"/>
         <EditText
                 android:id="@+id/valueText"
                 android:layout_width="0dp"
@@ -39,7 +39,7 @@
         <CheckBox
                 android:id="@+id/readonlyCheckbox"
                 android:layout_width="wrap_content"
-                android:text="Read-only (if checked, you won't be able to edit or delete this variable until the application is restarted.)"/>
+                android:text="@string/readonlyCheckbox"/>
     </TableRow>
 
 </TableLayout>

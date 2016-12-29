@@ -26,7 +26,7 @@
             android:layout_height="wrap_content">
         <EditText
                 android:id="@+id/inputText"
-                android:hint="Type expression or command"
+                android:hint="@string/exprInputHint"
                 android:inputType="text"
                 android:maxLines="1"
                 android:layout_width="0dp"
@@ -37,7 +37,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.3"
-                android:text="Evaluate"/>
+                android:text="@string/evalBtn"/>
     </LinearLayout>
 
     <TextView

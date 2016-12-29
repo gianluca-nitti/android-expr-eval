@@ -26,10 +26,10 @@ public class ExprEvalDialog extends AppCompatActivity implements View.OnClickLis
         String expr = getIntent().getStringExtra(actionIsProcessText ? Intent.EXTRA_PROCESS_TEXT : "expression");
         if(actionIsProcessText && getIntent().getBooleanExtra(Intent.EXTRA_PROCESS_TEXT_READONLY, false)){
             okButton.setVisibility(View.INVISIBLE);
-            ((Button)cancelButton).setText("Close");
+            ((Button)cancelButton).setText(R.string.close);
             findViewById(R.id.evalDialogOkToReplace).setVisibility(View.GONE);
         }
-        ((TextView)findViewById(R.id.evalDialogExpr)).append(expr);
+        ((TextView)findViewById(R.id.evalDialogExpr)).append(" " + expr);
         TextView evalDialogLog = (TextView)findViewById(R.id.evalDialogLog);
         evalDialogLog.setMovementMethod(new ScrollingMovementMethod());
         evalDialogLog.append(System.getProperty("line.separator"));
@@ -38,14 +38,14 @@ public class ExprEvalDialog extends AppCompatActivity implements View.OnClickLis
         boolean failed = ctx.update(expr) == TextViewExpressionContext.Status.ERROR;
         okButton.setEnabled(!failed);
         if(failed)
-            result = " evaluation failed.";
+            result = getString(R.string.evalFailed);
         else
             try {
                 result = Double.toString(ctx.getVariable("ans"));
             }catch(UndefinedException e){
-                result = " evaluation failed.";
+                result = getString(R.string.evalFailed);
             }
-        ((TextView)findViewById(R.id.evalDialogResult)).append(result);
+        ((TextView)findViewById(R.id.evalDialogResult)).append(" " + result);
     }
 
     @Override

@@ -55,13 +55,13 @@ public class EditFunctionDialogFragment extends DialogFragment implements Dialog
                     argsArrayAdapter.notifyDataSetChanged();
                     newArgText.getText().clear();
                 } else {
-                    newArgText.setError("Invalid argument name");
+                    newArgText.setError(getString(R.string.invalidArgName));
                 }
             }
         });
         builder.setView(rootLayout);
-        builder.setPositiveButton("OK", this);
-        builder.setNegativeButton("Cancel", this);
+        builder.setPositiveButton(android.R.string.ok, this);
+        builder.setNegativeButton(android.R.string.cancel, this);
         return builder.create();
     }
 
@@ -70,7 +70,7 @@ public class EditFunctionDialogFragment extends DialogFragment implements Dialog
         if (i == DialogInterface.BUTTON_POSITIVE) {
             try {
                 ctx.setFunction(nameText.getText().toString(), Expression.parse(exprText.getText().toString()), readonlyCheckbox.isChecked(), argNames.toArray(new String[argNames.size()]));
-                writeOutput(ctx.getFunction(nameText.getText().toString(), argNames.size()).toString() + " is now defined as " + exprText.getText().toString() + ".");
+                writeOutput(getString(R.string.functionNewDef, ctx.getFunction(nameText.getText().toString(), argNames.size()).toString(), exprText.getText().toString()));
             } catch (ExpressionException ex) {
                 writeOutput(ex.getMessage());
                 Toast.makeText(getActivity(), ex.getMessage(), Toast.LENGTH_LONG).show();

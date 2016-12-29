@@ -10,7 +10,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="2"
                 android:layout_height="wrap_content"
-                android:text="Name"/>
+                android:text="@string/name"/>
         <EditText
                 android:id="@+id/nameText"
                 android:layout_width="0dp"
@@ -25,7 +25,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="2"
                 android:layout_height="wrap_content"
-                android:text="Expression"/>
+                android:text="@string/expression"/>
         <EditText
                 android:id="@+id/exprText"
                 android:layout_width="0dp"
@@ -38,7 +38,7 @@
             android:layout_height="wrap_content">
         <TextView
                 android:layout_height="wrap_content"
-                android:text="Arguments (tap to remove)"/>
+                android:text="@string/arguments"/>
     </TableRow>
 
     <TableRow
@@ -56,7 +56,7 @@
             android:layout_height="match_parent">
         <EditText
                 android:id="@+id/newArgText"
-                android:hint="Type argument name"
+                android:hint="@string/argumentHint"
                 android:inputType="text"
                 android:maxLines="1"
                 android:layout_width="0dp"
@@ -65,7 +65,7 @@
         <Button
                 android:layout_width="0dp"
                 android:layout_weight="4"
-                android:text="Add argument"
+                android:text="@string/addArgument"
                 android:id="@+id/add_argument"/>
     </TableRow>
 
@@ -75,7 +75,7 @@
         <CheckBox
                 android:id="@+id/readonlyCheckbox"
                 android:layout_width="wrap_content"
-                android:text="Read-only (if checked, you won't be able to edit or delete this function until the application is restarted.)"/>
+                android:text="@string/readonlyCheckbox"/>
     </TableRow>
 
 </TableLayout>

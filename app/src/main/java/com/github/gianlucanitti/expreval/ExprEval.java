@@ -14,7 +14,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import com.github.gianlucanitti.javaexpreval.ExpressionContext;
-import com.github.gianlucanitti.javaexpreval.InteractiveExpressionContext;
 
 public class ExprEval extends AppCompatActivity implements View.OnClickListener{
 
@@ -64,15 +63,15 @@ public class ExprEval extends AppCompatActivity implements View.OnClickListener{
                 return true;
             case R.id.action_clearctx:
                 AlertDialog.Builder prompt = new AlertDialog.Builder(this);
-                prompt.setMessage("Do you want to delete all non-readonly functions and variables?");
-                prompt.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                prompt.setMessage(R.string.clearContextPrompt);
+                prompt.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         ctx.clear();
-                        ctx.writeOutput("All non-readonly variables and functions have been cleared.");
+                        ctx.writeOutput(getString(R.string.contextCleared));
                     }
                 });
-                prompt.setNegativeButton("No", null);
+                prompt.setNegativeButton(android.R.string.no, null);
                 prompt.show();
                 return true;
             case R.id.action_clearout:
@@ -87,9 +86,7 @@ public class ExprEval extends AppCompatActivity implements View.OnClickListener{
                 ctx.setEchoInput(item.isChecked());
                 return true;
             case R.id.action_help:
-                new AlertDialog.Builder(this).setMessage(Html.fromHtml("In the input box you can type expressions, variable or function assignments (like \"a=5\" or \"log(x,b)=log(x)/log(b)\") and commands. " +
-                    "The available commands are \"help\", \"context\", \"clear\" and \"exit\". Type \"help\" in the input box for more detailed instructions. In the output box, results are shown in <font color=\"green\">green</font> and errors in <font color=\"red\">red</font>. " +
-                    "Evaluation steps are shown in default color, and the input is echoed in <font color=\"yellow\">yellow</font> (both can be disabled from the menu).")).show();
+                new AlertDialog.Builder(this).setMessage(Html.fromHtml(getString(R.string.helpMessage))).show();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

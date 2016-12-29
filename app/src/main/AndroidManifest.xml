@@ -16,7 +16,7 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".ExprEvalDialog" android:label="Eval expression" android:theme="@style/Theme.AppCompat.Dialog">
+        <activity android:name=".ExprEvalDialog" android:label="@string/actionEvalExpr" android:theme="@style/Theme.AppCompat.Dialog">
             <intent-filter>
                 <action android:name="com.github.gianlucanitti.expreval.ACTION_EVAL"/>
                 <category android:name="android.intent.category.DEFAULT"/>

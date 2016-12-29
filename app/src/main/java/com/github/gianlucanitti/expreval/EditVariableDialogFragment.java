@@ -35,8 +35,8 @@ public class EditVariableDialogFragment extends DialogFragment implements Dialog
         valueText = (EditText) rootLayout.findViewById(R.id.valueText);
         readonlyCheckbox = (CheckBox) rootLayout.findViewById(R.id.readonlyCheckbox);
         builder.setView(rootLayout);
-        builder.setPositiveButton("OK", this);
-        builder.setNegativeButton("Cancel", this);
+        builder.setPositiveButton(android.R.string.ok, this);
+        builder.setNegativeButton(android.R.string.cancel, this);
         return builder.create();
     }
 
@@ -46,7 +46,7 @@ public class EditVariableDialogFragment extends DialogFragment implements Dialog
             String varName = nameText.getText().toString();
             try {
                 ctx.setVariable(varName , readonlyCheckbox.isChecked(), Expression.parse(valueText.getText().toString()));
-                writeOutput(varName + " is now " + ctx.getVariable(varName) + ".");
+                writeOutput(getString(R.string.varNewValue, varName, Double.toString(ctx.getVariable(varName))));
             }catch(ExpressionException ex){
                 writeOutput(ex.getMessage());
                 Toast.makeText(getActivity(), ex.getMessage(), Toast.LENGTH_LONG).show();

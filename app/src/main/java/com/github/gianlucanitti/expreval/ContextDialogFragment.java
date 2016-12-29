@@ -100,7 +100,7 @@ public class ContextDialogFragment extends DialogFragment implements Observer, D
         fm = getFragmentManager();
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setItems(items.getStrings(), this);
-        builder.setPositiveButton("New...", this);
+        builder.setPositiveButton(R.string.newContextItem, this);
         return builder.create();
     }
 
@@ -109,7 +109,7 @@ public class ContextDialogFragment extends DialogFragment implements Observer, D
         final ExprEval activity = (ExprEval)getActivity();
         AlertDialog.Builder innerDialog = new AlertDialog.Builder(activity);
         if (which == DialogInterface.BUTTON_POSITIVE) {
-            innerDialog.setItems(new String[]{"Add variable", "Add function"}, new DialogInterface.OnClickListener() {
+            innerDialog.setItems(R.array.addVariableFunction, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
                     if(i == 0) {
@@ -120,19 +120,21 @@ public class ContextDialogFragment extends DialogFragment implements Observer, D
                 }
             });
         } else {
-            innerDialog.setMessage("Do you want to delete \"" + items.getItem(which).toString() + "\"?");
-            innerDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener(){
+            innerDialog.setMessage(getString(R.string.contextItemDeletePrompt, items.getItem(which).toString()));
+            final String deletedMsg = getString(R.string.contextItemDeleted, items.getItem(which).toString());
+            innerDialog.setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener(){
                 @Override
                 public void onClick(DialogInterface dialog_inner, int which_inner) {
                     try{
-                        activity.writeOutput(items.removeItem(which).toString() + " has been deleted.");
+                        items.removeItem(which);
+                        activity.writeOutput(deletedMsg);
                     }catch(ExpressionException ex){
                         Toast.makeText(activity, ex.getMessage(), Toast.LENGTH_LONG).show();
                         activity.writeOutput(ex.getMessage());
                     }
                 }
             });
-            innerDialog.setNegativeButton("No", null);
+            innerDialog.setNegativeButton(android.R.string.no, null);
         }
         innerDialog.create().show();
     }

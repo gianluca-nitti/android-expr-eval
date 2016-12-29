@@ -1,3 +1,57 @@
 <resources>
+    <!-- Misc used in AndroidManifest.xml -->
     <string name="app_name">ExprEval</string>
+    <string name="actionEvalExpr">Eval expression</string> <!-- label for PROCESS_TEXT intent -->
+
+    <!-- ExprEval activity -->
+    <string name="exprInputHint" >Type expression or command</string>
+    <string name="evalBtn">Evaluate</string>
+    <string name="clearContextPrompt">Do you want to delete all non-readonly functions and variables?</string>
+    <string name="contextCleared">All non-readonly variables and functions have been cleared.</string>
+    <string name="helpMessage">
+        In the input box you can type expressions, variable or function assignments (like &quot;a=5&quot; or &quot;log(x,b)=log(x)/log(b)&quot;) and commands.
+        The available commands are &quot;help&quot;, &quot;context&quot;, &quot;clear&quot; and &quot;exit&quot;. Type &quot;help&quot; in the input box for more detailed instructions. In the output box, results are shown in &lt;font color=&quot;green&quot;&gt;green&lt;/font&gt; and errors in &lt;font color=&quot;red&quot;&gt;red&lt;/font&gt;.
+        Evaluation steps are shown in default color, and the input is echoed in &lt;font color=&quot;yellow&quot;&gt;yellow&lt;/font&gt; (both can be disabled from the menu).
+    </string>
+
+    <!-- Menu -->
+    <string name="context">Context</string>
+    <string name="clearContext">Clear context</string>
+    <string name="clearOutput">Clear output</string>
+    <string name="showSteps">Show steps</string>
+    <string name="echoInput">Echo input</string>
+    <string name="help">Help</string>
+
+    <!-- ContextDialogFragment-->
+    <string name="newContextItem">New&#8230;</string>
+    <string-array name="addVariableFunction">
+        <item>Add variable</item>
+        <item>Add function</item>
+    </string-array>
+    <string name="contextItemDeletePrompt">Do you want to delete "%s" ?</string>
+    <string name="contextItemDeleted">"%s" has been deleted</string>
+
+    <!-- both EditFunctionDialogFragment and EditVariableDialogFragment -->
+    <string name="name">Name</string>
+    <string name="readonlyCheckbox">Read-only (if checked, you won\'t be able to edit or delete this until the application is restarted.)</string>
+
+    <!-- EditVariableDialogFragment -->
+    <string name="value">Value</string>
+    <string name="varNewValue" formatted="false">%1s is now %2s.</string>
+
+    <!-- EditFunctionDialogFragment -->
+    <string name="expression">Expression</string>
+    <string name="arguments">Arguments (tap to remove)</string>
+    <string name="argumentHint">Type argument name</string>
+    <string name="addArgument">Add argument</string>
+    <string name="invalidArgName">Invalid argument name</string>
+    <string name="functionNewDef" formatted="false">%1s is now defined as %2s.</string>
+
+    <!-- ExprEvalDialog activity -->
+    <string name="expressionColon">Expression: </string>
+    <string name="evalLog">Evaluation log: </string>
+    <string name="result">Result: </string>
+    <string name="okToReplace">Tap OK to replace the expression with the result.</string>
+    <string name="close">Close</string>
+    <string name="evalFailed"> evaluation failed.</string>
 </resources>

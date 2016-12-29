@@ -2,31 +2,31 @@
       xmlns:tools="http://schemas.android.com/tools">
 
     <item android:id="@+id/action_context"
-          android:title="Context"
+          android:title="@string/context"
           tools:showAsAction="ifRoom"/>
 
     <item android:id="@+id/action_clearctx"
-          android:title="Clear context"
+          android:title="@string/clearContext"
           tools:showAsAction="never"/>
 
     <item android:id="@+id/action_clearout"
-          android:title="Clear output"
+          android:title="@string/clearOutput"
           tools:showAsAction="never"/>
 
     <item android:id="@+id/action_verbose"
-          android:title="Show steps"
+          android:title="@string/showSteps"
           android:checkable="true"
           android:checked="true"
           tools:showAsAction="never"/>
 
     <item android:id="@+id/action_input"
-          android:title="Echo input"
+          android:title="@string/echoInput"
           android:checkable="true"
           android:checked="true"
           tools:showAsAction="never"/>
 
     <item android:id="@+id/action_help"
-          android:title="Help"
+          android:title="@string/help"
           tools:showAsAction="never"/>
 
 </menu>
