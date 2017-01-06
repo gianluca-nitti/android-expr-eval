@@ -38,6 +38,7 @@ public class ExprEval extends AppCompatActivity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_expr_eval);
         setSupportActionBar((Toolbar)findViewById(R.id.my_toolbar));
+        LibraryLocalizer.localize(this);
         in = (EditText) findViewById(R.id.inputText);
         out = (TextView) findViewById(R.id.outputText);
         out.setMovementMethod(new ScrollingMovementMethod());

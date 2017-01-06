@@ -18,6 +18,7 @@ public class ExprEvalDialog extends AppCompatActivity implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_expr_eval_dialog);
+        LibraryLocalizer.localize(this);
         View okButton = findViewById(R.id.evalDialogOK);
         View cancelButton = findViewById(R.id.evalDialogCancel);
         okButton.setOnClickListener(this);
