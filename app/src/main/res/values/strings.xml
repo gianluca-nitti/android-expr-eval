@@ -28,8 +28,8 @@
         <item>Add variable</item>
         <item>Add function</item>
     </string-array>
-    <string name="contextItemDeletePrompt">Do you want to delete "%s" ?</string>
-    <string name="contextItemDeleted">"%s" has been deleted.</string>
+    <string name="contextItemDeletePrompt">Do you want to delete \"%s\" ?</string>
+    <string name="contextItemDeleted">\"%s\" has been deleted.</string>
 
     <!-- both EditFunctionDialogFragment and EditVariableDialogFragment -->
     <string name="name">Name</string>
@@ -62,30 +62,30 @@
     <string name="evalStep">%1$s evaluates to %2$s</string>
     <string name="exprEndReached">A sub-expression was expected, but the end of the expression was reached.</string>
     <string name="failedStoreResult">Warning: failed to store result. Reason: %s</string>
-    <string name="incorrectDelete">Incorrect syntax. To delete a function, the number of arguments must be specified (e.g. "fun(2)=" to delete "fun(x, y)").</string>
+    <string name="incorrectDelete">Incorrect syntax. To delete a function, the number of arguments must be specified (e.g. \"fun(2)=\" to delete \"fun(x, y)\").</string>
     <string name="interactiveHelp">
         Accepted statements are expressions, assignments and commands.
         An expression can be formed by integer or decimal numbers, the +,-,*,/,^ binary operators, variables, functions and parenthesis.
         A variable is a string of one or more letters and/or underscores. Variables can\'t be named as commands, which are reserved words.
-        When an expression is successfully evaluated, it\'s result is displayed and automatically assigned to the "ans" variable, so it can be accessed from the next statement.
+        When an expression is successfully evaluated, it\'s result is displayed and automatically assigned to the \"ans\" variable, so it can be accessed from the next statement.
         A variable assignment is formed by a variable name followed by the = symbol and an expression, which is evaluated and bound to that variable.
-        An empty assignment (in the form "someVariable=") deletes the variable.
-        A function assignment is formed by a function name and its parameters, followed by the = symbol and an expression, which is bound to that function, e.g."sum(x,y)=x+y".
-        A function can be deleted with an empty assignment; the number of arguments must be specified, e.g. "sum(2)=" to delete the function "sum" defined on two arguments.
-        An assignment (of variable or function) can be prepended with the "readonly" word to prevent it to be modified or deleted, e.g. "readonly x=1", "readonly square(a)=a^2".
+        An empty assignment (in the form \"someVariable=\") deletes the variable.
+        A function assignment is formed by a function name and its parameters, followed by the = symbol and an expression, which is bound to that function, e.g.\"sum(x,y)=x+y\".
+        A function can be deleted with an empty assignment; the number of arguments must be specified, e.g. \"sum(2)=\" to delete the function \"sum\" defined on two arguments.
+        An assignment (of variable or function) can be prepended with the \"readonly\" word to prevent it to be modified or deleted, e.g. \"readonly x=1\", \"readonly square(a)=a^2\".
         The commands are: context (prints all the defined variables and functions), clear (deletes all the non-readonly variables and functions), help (shows this message) and exit (stops reading input).
     </string>
     <string name="invalidOperator">Unknown operator \'%s\'.</string>
-    <string name="invalidSymName">"%1$s" isn\'t a valid symbol name because it contains the \'%2$s\' character.</string>
+    <string name="invalidSymName">\"%1$s\" isn\'t a valid symbol name because it contains the \'%2$s\' character.</string>
     <string name="onlyOneEquality">Only one = operator per command is allowed.</string>
     <string name="operatorExpected">An operator was expected, but an expression was found.</string>
     <string name="operatorFound">A sub-expression was expected, but an operator was found.</string>
     <string name="parenthesisMismatch">The numbers of opened and closed parenthesis don\'t match.</string>
-    <string name="readonlyFunc">The "%1$s" function is defined as read-only for %1$s arguments.</string>
-    <string name="readonlyVar">The "%s" variable is defined as read-only.</string>
+    <string name="readonlyFunc">The \"%1$s\" function is defined as read-only for %2$s arguments.</string>
+    <string name="readonlyVar">The \"%s\" variable is defined as read-only.</string>
     <string name="reservedWord">%s is a reserved word and can\'t be used as symbol name.</string>
     <string name="rewriteStep">%1$s can be rewritten as %2$s</string>
-    <string name="undefinedFunc">The function "%1$s" is not defined for %2$s arguments.</string>
-    <string name="undefinedVar">The variable "%s" is not defined.</string>
+    <string name="undefinedFunc">The function \"%1$s\" is not defined for %2$s arguments.</string>
+    <string name="undefinedVar">The variable \"%s\" is not defined.</string>
     <string name="unknownChar">Unrecognized character %s.</string>
 </resources>
