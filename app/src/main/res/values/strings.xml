@@ -9,9 +9,9 @@
     <string name="clearContextPrompt">Do you want to delete all non-readonly functions and variables?</string>
     <string name="contextCleared">All non-readonly variables and functions have been deleted.</string>
     <string name="helpMessage">
-        In the input box you can type expressions, variable or function assignments (like &quot;a=5&quot; or &quot;log(x,b)=log(x)/log(b)&quot;) and commands.
-        The available commands are &quot;help&quot;, &quot;context&quot;, &quot;clear&quot; and &quot;exit&quot;. Type &quot;help&quot; in the input box for more detailed instructions. In the output box, results are shown in &lt;font color=&quot;green&quot;&gt;green&lt;/font&gt; and errors in &lt;font color=&quot;red&quot;&gt;red&lt;/font&gt;.
-        Evaluation steps are shown in default color, and the input is echoed in &lt;font color=&quot;yellow&quot;&gt;yellow&lt;/font&gt; (both can be disabled from the menu).
+        In the input box you can type expressions, variable or function assignments (like \"a=5\" or \"log(x,b)=log(x)/log(b)\") and commands.
+        The available commands are \"help\", \"context\", \"clear\" and \"exit\". Type \"help\" in the input box for more detailed instructions. In the output box, results are shown in &lt;font color=\"green\"&gt;green&lt;/font&gt; and errors in &lt;font color=\"red\"&gt;red&lt;/font&gt;.
+        Evaluation steps are shown in default color, and the input is echoed in &lt;font color=\"yellow\"&gt;yellow&lt;/font&gt; (both can be disabled from the menu).
     </string>
 
     <!-- Menu -->
@@ -33,7 +33,7 @@
 
     <!-- both EditFunctionDialogFragment and EditVariableDialogFragment -->
     <string name="name">Name</string>
-    <string name="readonlyCheckbox">Read-only (if checked, you won\'t be able to edit or delete this until the application is restarted.)</string>
+    <string name="readonlyCheckbox">Read-only (if checked, you won\'t be able to edit or delete this until the application is restarted)</string>
 
     <!-- EditVariableDialogFragment -->
     <string name="value">Value</string>
@@ -66,14 +66,14 @@
     <string name="interactiveHelp">
         Accepted statements are expressions, assignments and commands.
         An expression can be formed by integer or decimal numbers, the +,-,*,/,^ binary operators, variables, functions and parenthesis.
-        A variable is a string of one or more letters and/or underscores. Variables can\'t be named as commands, which are reserved words.
+        A variable name is a string of one or more letters and/or underscores. Variables can\'t be named as commands, which are reserved words.
         When an expression is successfully evaluated, it\'s result is displayed and automatically assigned to the \"ans\" variable, so it can be accessed from the next statement.
         A variable assignment is formed by a variable name followed by the = symbol and an expression, which is evaluated and bound to that variable.
         An empty assignment (in the form \"someVariable=\") deletes the variable.
         A function assignment is formed by a function name and its parameters, followed by the = symbol and an expression, which is bound to that function, e.g.\"sum(x,y)=x+y\".
         A function can be deleted with an empty assignment; the number of arguments must be specified, e.g. \"sum(2)=\" to delete the function \"sum\" defined on two arguments.
         An assignment (of variable or function) can be prepended with the \"readonly\" word to prevent it to be modified or deleted, e.g. \"readonly x=1\", \"readonly square(a)=a^2\".
-        The commands are: context (prints all the defined variables and functions), clear (deletes all the non-readonly variables and functions), help (shows this message) and exit (stops reading input).
+        The commands are: context (prints all the defined variables and functions), clear (deletes all the non-readonly variables and functions), help (shows this message) and exit (closes the application).
     </string>
     <string name="invalidOperator">Unknown operator \'%s\'.</string>
     <string name="invalidSymName">\"%1$s\" isn\'t a valid symbol name because it contains the \'%2$s\' character.</string>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Misc used in AndroidManifest.xml -->
+    <string name="app_name">ExprEval</string>
+    <string name="actionEvalExpr">Valuta espressione</string> <!-- label for PROCESS_TEXT intent -->
+
+    <!-- ExprEval activity -->
+    <string name="exprInputHint" >Digita espressione o comando</string>
+    <string name="evalBtn">Valuta</string>
+    <string name="clearContextPrompt">Eliminare tutte le funzioni e variabili non readonly?</string>
+    <string name="contextCleared">Tutte le variabili e funzioni non-readonly sono state eliminate.</string>
+    <string name="helpMessage">
+        Nella casella di input è possibile digitare expressioni, definizioni di variabili o funzioni (come \"a=5\" o \"log(x,b)=log(x)/log(b)\") e comandi.
+        I comandi disponibili sono \"help\", \"context\", \"clear\" e \"exit\". Digitare il comando \"help\" per informazioni più dettagliate. Nella casella di output, i risultati sono mostrati in &lt;font color=\"green\"&gt;verde&lt;/font&gt; e gli errori in &lt;font color=\"red\"&gt;rosso&lt;/font&gt;.
+        I passaggi sono mostrati nel colore di default di sistema, e l\'input è riscritto in &lt;font color=\"yellow\"&gt;giallo&lt;/font&gt; (entrambi possono essere disabilitati dal menu).
+    </string>
+
+    <!-- Menu -->
+    <string name="context">Contesto</string>
+    <string name="clearContext">Svuota contesto</string>
+    <string name="clearOutput">Svuota output</string>
+    <string name="showSteps">Mostra passaggi</string>
+    <string name="echoInput">Riscrivi input</string>
+    <string name="help">Aiuto</string>
+
+    <!-- ContextDialogFragment-->
+    <string name="newContextItem">Nuovo&#8230;</string>
+    <string-array name="addVariableFunction">
+        <item>Aggiungi variabile</item>
+        <item>Aggiungi funzione</item>
+    </string-array>
+    <string name="contextItemDeletePrompt">Eliminare \"%s\" ?</string>
+    <string name="contextItemDeleted">\"%s\" è stata eliminata.</string>
+
+    <!-- both EditFunctionDialogFragment and EditVariableDialogFragment -->
+    <string name="name">Nome</string>
+    <string name="readonlyCheckbox">Sola lettura/readonly (se selezionato, non si potrà modificare o eliminare questo elemento finchè l\'applicazione non viene riavviata)</string>
+
+    <!-- EditVariableDialogFragment -->
+    <string name="value">Valore</string>
+    <string name="varNewValue">%1$s vale ora %2$s.</string>
+
+    <!-- EditFunctionDialogFragment -->
+    <string name="expression">Espressione</string>
+    <string name="arguments">Argomenti (tap per rimuovere)</string>
+    <string name="argumentHint">Digita nome argomento</string>
+    <string name="addArgument">Aggiungi argomento</string>
+    <string name="invalidArgName">Nome di argomento non valido</string>
+    <string name="functionNewDef">%1$s è ora definita come %2$s.</string>
+
+    <!-- ExprEvalDialog activity -->
+    <string name="expressionColon">Espressione: </string>
+    <string name="evalLog">Passaggi eseguiti: </string>
+    <string name="result">Risultato: </string>
+    <string name="okToReplace">Tocca OK per sostituire l\'espressione con il risultato.</string>
+    <string name="close">Chiudi</string>
+    <string name="evalFailed"> impossibile valutare l\'espressione.</string>
+
+    <!-- Various messages used by the java-expr-eval library (https://github.com/gianluca-nitti/java-expr-eval) -->
+    <string name="emptyExpr">Un\'espressione vuota è stata trovata.</string>
+    <string name="emptySymName">La stringa vuota non è un identificatore valido.</string>
+    <string name="errorPrefix">Errore: %s</string>
+    <string name="evalStep">%1$s vale %2$s</string>
+    <string name="exprEndReached">Una sotto-espressione era attesa, ma è stata raggiunta la fine dell\'espressione.</string>
+    <string name="failedStoreResult">Attenzione: impossibile memorizzare il risultato. Motivo: %s</string>
+    <string name="incorrectDelete">Sintassi errata. Per eliminare una funzione, è necessario specificare il numero di argomenti (es. \"fun(2)=\" per eliminare \"fun(x, y)\").</string>
+    <string name="interactiveHelp">
+        Le stringhe accettate sono espressioni, assegnamenti e comandi.
+        Un\'espressione può essere formata da numeri interi o decimali, gli operatori binari +,-,*,/,^, variabili, funzioni e parentesi tonde.
+        Un nome di variabile è una stringa di una o più lettere e/o underscore. I comandi sono parole riservate e non possono essere usati come nomi di variabili.
+        Quando un\'espressione viene valutata senza errori, il risultato viene mostrato e memorizzato nella variabile \"ans\".
+        Un assegnamento di variabile è formato da un nome di variabile seguito dal simbolo = e da un\'espressione il cui risultato verrà assegnato alla variabile.
+        Un assegnamento vuoto (nella forma \"someVariable=\") elimina la variabile.
+        Un assegnamento di funzione è formato da un nome di funzione con i relativi parametri, seguito da un = e da un\'espressione, es.\"sum(x,y)=x+y\".
+        Una funzione può essere eliminata con un assegnamento vuoto; il numero di argomenti deve essere specificato, es. \"sum(2)=\" per eliminare la funzione \"sum\" definita su due argomenti.
+        Un assegnamento (di variabile o di funzione) può essere preceduto dalla parola \"readonly\" per impedire che venga modificata o eliminata, es. \"readonly x=1\", \"readonly square(a)=a^2\".
+        I comandi sono: context (stampa tutte le variabili e le funzioni definite), clear (elimina tutte le variabili e le funzioni non-readonly), help (mostra questo messaggio) e exit (chiude l\'applicazione).
+    </string>
+    <string name="invalidOperator">Operatore sconosciuto \'%s\'.</string>
+    <string name="invalidSymName">\"%1$s\" non è un\'identificatore valido perché contiene il carattere \'%2$s\'.</string>
+    <string name="onlyOneEquality">Un assegnamento può contenere un solo operatore =.</string>
+    <string name="operatorExpected">Un operatore era atteso, ma è stata trovata un\'espressione.</string>
+    <string name="operatorFound">Una sotto-espressione era attesa, ma un\'operatore è stato trovato.</string>
+    <string name="parenthesisMismatch">Le parentesi aperte e chiuse non corrispondono.</string>
+    <string name="readonlyFunc">La funzione \"%1$s\" è definita come read-only per %2$s argomenti.</string>
+    <string name="readonlyVar">La variabile \"%s\" è definita come read-only.</string>
+    <string name="reservedWord">%s è una parola riservata e non può essere usata come identificatore.</string>
+    <string name="rewriteStep">%1$s può essere riscritto come %2$s</string>
+    <string name="undefinedFunc">La funzione \"%1$s\" non è definita per %2$s argomenti.</string>
+    <string name="undefinedVar">La variabile \"%s\" non è definita.</string>
+    <string name="unknownChar">Carattere non riconosciuto %s.</string>
+</resources>
