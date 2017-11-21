@@ -6,8 +6,8 @@
     <!-- ExprEval activity -->
     <string name="exprInputHint" >Digite a expressão ou comando</string>
     <string name="evalBtn">Avaliar</string>
-    <string name="clearContextPrompt">Você deseja excluir todas as funçções e variáveis que não são apenas leitura?</string>
-    <string name="contextCleared">Todas as variáveis e funções que não são apenas leitura foram excluídas.</string>
+    <string name="clearContextPrompt">Você deseja excluir todas as funçções e variáveis que não são somente leitura?</string>
+    <string name="contextCleared">Todas as variáveis e funções que não são somente leitura foram excluídas.</string>
     <string name="helpMessage">
         Na caixa de entrada você pode digitar expressões, variáveis ou atribuições (como \"a=5\" ou \"log(x,b)=log(x)/log(b)\") e comandos.
         Os comandos dispononíveis são \"help\", \"context\", \"clear\" e \"exit\". Digite \"help\" na caixa de entrada para instruções mais detalhadas. Na caixa de saída, os resultados são mostrados em &lt;font color=\"green\"&gt;verde&lt;/font&gt; e erros em &lt;font color=\"red\"&gt;vermelho&lt;/font&gt;.
@@ -62,7 +62,7 @@
     <string name="evalStep">%1$s é avaliada para %2$s</string>
     <string name="exprEndReached">Uma subexpresssão era esperada, mas o fim da expressão foi alcançado.</string>
     <string name="failedStoreResult">Aviso: falha ao armazenar resultado. Motivo: %s</string>
-    <string name="incorrectDelete">Sintaxe incorreta. Para excluir uma função, o npumero de argumentos deve ser especificado (p.e. \"fun(2)=\" para excluir \"fun(x, y)\").</string>
+    <string name="incorrectDelete">Sintaxe incorreta. Para excluir uma função, o número de argumentos deve ser especificado (p.e. \"fun(2)=\" para excluir \"fun(x, y)\").</string>
     <string name="interactiveHelp">
         Declarações aceitas são expressões, atribuições e comandos.
         Uma expressão pode ser formada por números inteiros ou decimais, os operadores binários +,-,*,/,^ , variáveis, funções e parênteses.
@@ -80,7 +80,7 @@
     <string name="onlyOneEquality">Apenas um operador = por comando é permitido.</string>
     <string name="operatorExpected">Um operador era esperado, mas uma expressão foi encontrada.</string>
     <string name="operatorFound">Uma subexpressão era esperada, mas um operador foi encontrado.</string>
-    <string name="parenthesisMismatch">O número de parênteses abertos e fechados não batem.</string>
+    <string name="parenthesisMismatch">O número de parênteses abertos e fechados não são iguais.</string>
     <string name="readonlyFunc">A função \"%1$s\" é definida como apenas leitura para %2$s argumentos.</string>
     <string name="readonlyVar">A variável \"%s\" está definida como apenas leitura.</string>
     <string name="reservedWord">%s é uma palavra reservada e não pode ser usada como um nome simbólico.</string>
