@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.text.method.ScrollingMovementMethod;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -88,6 +89,12 @@ public class ExprEval extends AppCompatActivity implements View.OnClickListener{
                 return true;
             case R.id.action_help:
                 new AlertDialog.Builder(this).setMessage(Html.fromHtml(getString(R.string.helpMessage))).show();
+                return true;
+            case R.id.action_about:
+                AlertDialog d = new AlertDialog.Builder(this)
+                        .setMessage(Html.fromHtml(getString(R.string.aboutMessage)))
+                        .show();
+                ((TextView)d.findViewById(android.R.id.message)).setMovementMethod(LinkMovementMethod.getInstance());
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

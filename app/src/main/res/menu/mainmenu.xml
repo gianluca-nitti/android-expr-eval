@@ -29,4 +29,8 @@
           android:title="@string/help"
           tools:showAsAction="never"/>
 
+    <item android:id="@+id/action_about"
+          android:title="@string/about"
+          tools:showAsAction="never"/>
+
 </menu>
