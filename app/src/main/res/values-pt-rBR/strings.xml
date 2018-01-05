@@ -13,6 +13,20 @@
         Os comandos dispononíveis são \"help\", \"context\", \"clear\" e \"exit\". Digite \"help\" na caixa de entrada para instruções mais detalhadas. Na caixa de saída, os resultados são mostrados em &lt;font color=\"green\"&gt;verde&lt;/font&gt; e erros em &lt;font color=\"red\"&gt;vermelho&lt;/font&gt;.
         Passos de avaliação são mostrados na cor padrão, e a entrada é repetida em &lt;font color=\"yellow\"&gt;amarelo&lt;/font&gt; (ambos podem ser desativados pelo menu).
     </string>
+    <string name="aboutMessage">
+        &lt;h2&gt;Licença&lt;/h2&gt;
+        Este aplicativo é livre e código aberto lançado sob a licença MIT (&lt;a href="https://github.com/gianluca-nitti/android-expr-eval"&gt;click to get the source code&lt;/a&gt;).
+        &lt;h2&gt;Créditos&lt;/h2&gt;
+        &lt;h4&gt;Desenvolvimento&lt;/h4&gt;
+        &lt;a href="https://github.com/gianluca-nitti"&gt;@gianluca-nitti&lt;/a&gt;
+        &lt;h4&gt;Traduções&lt;/h4&gt;
+        &lt;ul&gt;
+        &lt;li&gt;&lt;a href="https://github.com/afmachado"&gt;@afmachado&lt;/a&gt; (&lt;a href="http://bitly.com/1Rwm176"&gt;website&lt;/a&gt;): Português do Brasil&lt;/li&gt;
+        &lt;li&gt;&lt;a href="https://github.com/gianluca-nitti"&gt;@gianluca-nitti&lt;/a&gt;: Inglês, Italiano&lt;/li&gt;
+        &lt;/ul&gt;
+    </string>
+<string name="getSource">Tenha acesso ao código fonte</string>
+    
 
     <!-- Menu -->
     <string name="context">Contexto</string>
